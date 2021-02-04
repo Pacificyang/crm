@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pacificy.crm.mapper.AppserverMapper">
+
+
+  
+  <select id="getAppserverListWithCond" parameterType="cn.pacificy.crm.pojo.AppserverQueryVo" resultType="cn.pacificy.crm.pojo.Appserver">
+  	SELECT  *
+FROM appserver
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="getTotalResult" parameterType="cn.pacificy.crm.pojo.AppserverQueryVo" resultType="int">
+  		SELECT  count(1)
+FROM appserver
+  </select>
+  
+  
+  
+  
+  <select id="getAppserverById" parameterType="int" resultType="cn.pacificy.crm.pojo.Appserver">
+  	select * from appserver where server_id = #{appserverId}
+  </select>
+  
+  
+  <!-- 更新用户的信息 -->
+  <update id="updateAppserver" parameterType="cn.pacificy.crm.pojo.Appserver">
+  	update appserver
+  	<set>
+  		<if test="server_name !=null and server_name !='' ">
+  			server_name = #{server_name},
+  		</if>
+  	</set> 
+  	
+  	<where>
+  		<if test="server_id !=null and server_id !='' ">
+  		 and server_id = #{server_id}
+  		</if>
+  	
+  	</where>
+  </update>
+  
+  
+  
+  <delete id="deleteAppserverById" parameterType="int">
+  	delete from appserver where server_id = #{appserverId}
+  </delete>
+  
+  
+  
+  
+  
+</mapper>
